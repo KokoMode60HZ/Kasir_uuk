@@ -1,0 +1,162 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Full Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h1>Kasir</h1>
+    </div>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+        <div class="profile-container d-flex align-items-center">
+            <div class="profile-picture">
+                <%= user.username.charAt(0).toUpperCase() %>
+            </div>
+            <div class="profile-info">
+                <p class="profile-name"><%= user.username %></p>
+                <span class="profile-role"><%= userRole.charAt(0).toUpperCase() + userRole.slice(1) %></span>
+            </div>
+        </div>
+    <% } %>
+    
+     <nav class="nav-section">
+        <% if (typeof userRole !== 'undefined') { %>
+            <% if (userRole === 'admin' || userRole === 'petugas') { %>
+                <h6 class="menu-title">Menu <%= userRole === 'admin' ? 'Admin' : 'Petugas' %></h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="/produk" class="nav-link <%= currentPath === '/produk' ? 'active' : '' %>">
+                            <img src="/icons/manage.svg" alt="manage">
+                            <span>Kelola Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/produk/pelanggan" class="nav-link <%= currentPath === '/produk/pelanggan' ? 'active' : '' %>">
+                            <img src="/icons/catalog.svg" alt="catalog">
+                            <span>Katalog Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/produk/tambah" class="nav-link <%= currentPath === '/produk/tambah' ? 'active' : '' %>">
+                            <img src="/icons/add.svg" alt="add">
+                            <span>Tambah Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan/keranjang" class="nav-link <%= currentPath === '/penjualan/keranjang' ? 'active' : '' %>">
+                            <img src="/icons/cart.svg" alt="cart">
+                            <span>Keranjang</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan" class="nav-link <%= currentPath === '/penjualan' ? 'active' : '' %>">
+                            <img src="/icons/history.svg" alt="history">
+                            <span>Riwayat Pembelian</span>
+                        </a>
+                    </li>
+                </ul>
+            <% } else if (userRole === 'pelanggan') { %>
+                <h6 class="menu-title">Menu Pelanggan</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="/produk/pelanggan" class="nav-link <%= currentPath === '/produk/pelanggan' ? 'active' : '' %>">
+                            <img src="/icons/catalog.svg" alt="catalog">
+                            <span>Katalog Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan/keranjang" class="nav-link <%= currentPath === '/penjualan/keranjang' ? 'active' : '' %>">
+                            <img src="/icons/cart.svg" alt="cart">
+                            <span>Keranjang Belanja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan" class="nav-link <%= currentPath === '/penjualan' ? 'active' : '' %>">
+                            <img src="/icons/history.svg" alt="history">
+                            <span>Riwayat Pembelian</span>
+                        </a>
+                    </li>
+                </ul>
+            <% } %>
+        <% } %>
+    </nav>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+        <div class="logout-container">
+            <form action="/auth/logout" method="get">
+                <button type="submit" class="logout-button">
+                    <img src="/icons/logout.svg" alt="logout" width="20">
+                    <span>Logout</span>
+                </button>
+            </form>
+        </div>
+    <% } else { %>
+        <div class="auth-links">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/auth/login" class="nav-link">
+                        <img src="/icons/login.svg" alt="login">
+                        <span>Masuk</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/auth/register" class="nav-link">
+                        <img src="/icons/register.svg" alt="register">
+                        <span>Daftar</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <% } %>
+</div>
+
+<div class="sidebar-mini">
+    <div class="sidebar-brand-mini">
+        <h1>Kasir</h1>
+    </div>
+
+    <nav class="nav-section">
+        <% if (typeof userRole !== 'undefined') { %>
+            <% if (userRole === 'admin'  || userRole === 'petugas') { %>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="/produk" class="nav-link <%= currentPath === '/produk' ? 'active' : '' %>">
+                            <img src="/icons/manage.svg" alt="manage">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/produk/pelanggan" class="nav-link <%= currentPath === '/produk/pelanggan' ? 'active' : '' %>">
+                            <img src="/icons/catalog.svg" alt="catalog">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/produk/tambah" class="nav-link <%= currentPath === '/produk/tambah' ? 'active' : '' %>">
+                            <img src="/icons/add.svg" alt="add">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan/keranjang" class="nav-link <%= currentPath === '/penjualan/keranjang' ? 'active' : '' %>">
+                            <img src="/icons/cart.svg" alt="cart">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/penjualan" class="nav-link <%= currentPath === '/penjualan' ? 'active' : '' %>">
+                            <img src="/icons/history.svg" alt="history">
+                        </a>
+                    </li>
+                </ul>
+            <% } %>
+        <% } %>
+    </nav>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+        <div class="profile-mini">
+            <div class="profile-picture">
+                <%= user.username.charAt(0).toUpperCase() %>
+            </div>
+        </div>
+    <% } %>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Login</h2>
+
+         <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+        <form action="/auth/login" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="auth-buttons">
+                <button type="submit" class="btn-login">Masuk</button>
+                <a href="/auth/register" class="btn-register">Daftar</a>
+            </div>
+        </form>
+
+        <div class="auth-divider">
+            <span>atau</span>
+        </div>
+
+        <a href="/auth/register" class="register-link">
+            Belum punya akun? Daftar sekarang
+        </a>
+    </div>
+
+      <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('Form submitted');
+        });
+    </script>
+</body>
+</html>

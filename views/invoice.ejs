@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Pembelian</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('layout/sidebar') %>
+    
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Invoice Pembelian</h1>
+            <p>Nomor Transaksi: <%= transaksiId %></p>
+            <p>Tanggal: <%= new Date().toLocaleDateString('id-ID') %></p>
+        </div>
+
+        <div class="invoice-details">
+            <div>
+                <p><strong>Nama Pelanggan:</strong> <%= user.username %></p>
+            </div>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Jumlah</th>
+                    <th>Harga Satuan</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.nama_produk %></td>
+                        <td><%= item.jumlah %></td>
+                        <td>Rp. <%= item.harga.toLocaleString('id-ID') %></td>
+                        <td>Rp. <%= item.total.toLocaleString('id-ID') %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <div class="invoice-total">
+            <h3>Total Pembayaran: Rp. <%= totalBiaya.toLocaleString('id-ID') %></h3>
+        </div>
+
+        <div class="invoice-footer">
+            <p>Terima kasih telah berbelanja di toko kami!</p>
+            <a href="/produk/pelanggan" class="btn-primary">Kembali ke Katalog</a>
+            <button onclick="window.print()" class="btn-primary">Cetak Invoice</button>
+        </div>
+    </div>
+</body>
+</html>

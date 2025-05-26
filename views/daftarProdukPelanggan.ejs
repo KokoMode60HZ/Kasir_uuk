@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Daftar Produk</title>
+</head>
+<body class="daftar-produk-body">
+    <%- include('layout/sidebar') %>
+    <h1>Daftar Produk</h1>
+    <div class="cart-container">
+        <% produkList.forEach(produk => { %>
+            <div class="cart-item">
+                <img src="/image/<%= produk.foto %>" alt="Foto Produk" width="100">
+                <div class="cart-item-info">
+                    <p><strong>Nama Produk:</strong> <%= produk.namaProduk %> </p>
+                    <p><strong>Harga:</strong> Rp. <%= produk.harga.toLocaleString() %> </p>
+                    <p><strong>Stok Tersedia:</strong> <%= produk.stokTersedia %> </p>
+                </div>
+                <!-- Hapus form, gunakan button saja -->
+                <button onclick="tambahKeKeranjang('<%= produk._id %>')" class="btn btn-primary">
+                    Add to Cart
+                </button>
+            </div>
+        <% }) %>
+    </div>
+
+<script>
+async function tambahKeKeranjang(produkId) {
+    try {
+        const response = await fetch(`/penjualan/tambah-ke-keranjang/${produkId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (!data.success && response.status === 403) {
+            // Alert khusus untuk admin
+            Swal.fire({
+                title: 'Akses Dibatasi',
+                text: 'Maaf, hanya pelanggan yang dapat melakukan pembelian',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ganti Akun',
+                cancelButtonText: 'Tutup',
+                customClass: {
+                    container: 'custom-swal'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/auth/login';
+                }
+            });
+        } else if (data.success) {
+            // Notifikasi sukses
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Produk ditambahkan ke keranjang!',
+                showConfirmButton: false,
+                timer: 1500,
+                toast: true
+            });
+        } else {
+            throw new Error(data.message || 'Gagal menambahkan ke keranjang');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.message || 'Terjadi kesalahan saat menambahkan ke keranjang'
+        });
+    }
+}
+</script>
+
+<!-- Tambahkan CSS untuk custom styling -->
+<style>
+.custom-swal {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.custom-swal .swal2-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.custom-swal .swal2-html-container {
+    font-size: 1rem;
+    margin: 1em 1.6em 0.3em;
+}
+
+.custom-swal .swal2-confirm {
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+}
+
+.custom-swal .swal2-cancel {
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+}
+</style>
+</body>
+</html>

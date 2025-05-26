@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="register-body">
+    <div class="register-container">
+        <h2>Register</h2>
+        
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+        <form action="/auth/register" method="POST">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="alamat">Alamat</label>
+            <input type="text" id="alamat" name="alamat" required>
+
+            <label for="telepon">Telepon</label>
+            <input type="telepon" id="telepon" name="telepon" required>
+
+            <label for="reg-username">Username</label>
+            <input type="text" id="reg-username" name="username" required>
+
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" name="password" required>
+
+                <input type="hidden" name="role" value="petugas">
+            <button type="submit" class="btn btn-primary">Register</button>            
+        </form>
+        <div class="mt-3 text-center">
+            Sudah punya akun? <a href="/auth/login">Login disini</a>
+        </div>
+    </div>
+    <script>
+        // Cek apakah form sudah disubmit
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('Form submitted');
+        });
+    </script>
+
+</body>
+</html>
+
+

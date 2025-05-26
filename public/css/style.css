@@ -1,0 +1,790 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+.sidebar-mini {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: #FFD586;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.sidebar {
+    left: 0;
+    width: 280px;
+    padding: 1.5rem;
+    z-index: 100;
+}
+
+.sidebar-mini {
+    width: 80px;
+    padding: 1rem;
+    left: -280px; /* Hidden by default */
+    z-index: 99;
+}
+
+.sidebar-mini .nav-link {
+    padding: 0.75rem;
+    justify-content: center;
+}
+
+.sidebar-mini .nav-link img {
+    margin: 0;
+}
+
+.sidebar-mini .profile-mini {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.sidebar-brand {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.sidebar-brand h1 {
+    color: #000;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.login-body, .register-body, .edit-produk-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+/* Auth Buttons Styling */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-login,
+.btn-register {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-login {
+    background: #007bff;
+    color: white;
+}
+
+.btn-register {
+    background: #ffffff;
+    color: white;
+}
+
+.btn-login:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-register:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.auth-divider span {
+    padding: 0 10px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Update login container */
+.login-container {
+    width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #FFD586;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.login-container .register-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #495057;
+    text-decoration: none;
+}
+
+.login-container .register-link:hover {
+    color: #007bff;
+}
+.logout, .btn-delete-daftar-produk {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #e40d0d;
+}
+.logout:hover {
+    background: #c00;
+    transform: scale(1.05); /* efek zoom sedikit */
+    box-shadow: 0 0 10px 2px white; /* bayangan putih */
+}
+.btn-delete-daftar-produk:hover {
+    background: #c00;
+}
+input {
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #cccc;
+    border-radius: 4px;
+}
+
+button, .btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    margin-top: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+button:hover, .btn:hover {
+    background: #0056b3;
+}
+.register-container, .login-container, .tambah-produk-container, .edit-produk-container {
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #FFD586;
+}
+.login-container a {
+    color: #007bff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+.daftar-produk-body {
+    height: 100vh;
+    background: #FFE99A;
+    padding-left: 260px;
+}
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    z-index: 500;
+    justify-content: flex-start;
+}
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    background: #FFD586;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 250px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+
+}.cart-item:hover {
+    box-shadow: 0 5px 6px 5px rgba(136, 255, 0, 0.2);
+    transform: scale(1.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cart-item img {
+    width: 100%;
+    aspect-ratio: 5/5; /* Menambahkan aspect ratio 4:3 */
+    object-fit: cover; /* Memastikan gambar menutupi area dengan baik */
+    border-radius: 4px;
+    margin-bottom: 10px; /* Tambah margin bottom untuk spacing */
+}
+.cart-item-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: start;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: #FFD586;
+  padding-top: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.sidebar h1 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar nav ul li {
+  padding: 5px;
+  text-align: left;
+}
+
+/* Tambahkan CSS ini ke file yang ada */
+.sidebar nav ul li a:hover {
+    background-color: #ffe99a7a;
+    border-radius: 40px;
+}
+
+.sidebar nav ul li a.active {
+    background-color: #ffe99a;
+    color: black;
+    border-radius: 40px;
+}
+
+.sidebar nav ul li a.active:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.sidebar .nav-link {
+ display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #000;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin: 0.25rem 0;
+}
+
+.sidebar .nav-link img {
+ width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    opacity: 0.7;}
+
+.sidebar .nav-link.active img {
+    opacity: 1;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.nav-link.active {
+    background: #FFE99A;
+    color: #000;
+}
+
+.nav-section {
+    margin: 2rem 0;
+}
+
+.nav-section h6 {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.nav-link span {
+    font-size: 0.875rem;
+}
+
+.menu-title {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+/* Update profile container styling */
+.profile-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+.profile-info {
+    margin-left: 1rem;
+}
+
+.profile-role {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* Update logout button styling */
+.logout-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+.logout-form button:hover {
+    background: #ff0000;
+}
+
+.logout-form {
+  margin-top: auto;
+  padding: 10px;
+}
+.tambah-produk-body, .edit-produk-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #FFE99A;
+    padding-left: 260px;
+}
+.btn-daftar-produk-pelanggan {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #28a745;
+}
+.btn-daftar-produk-pelanggan:hover {
+    background: #218838;
+}
+.penjualan-produk-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.penjualan-produk-container {
+    background-color: #fff;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+select, input[type="number"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.daftar-penjualan-body {
+    background: #FFE99A;
+    min-height: 100vh;
+    padding-left: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.daftar-penjualan-container {
+    margin: 40px auto 0 auto;
+    background: #fff;
+    border: 2px solid #FFD586;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.daftar-penjualan-container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.daftar-penjualan-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fafbfc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.daftar-penjualan-container th, .daftar-penjualan-container td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.daftar-penjualan-container th {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.daftar-penjualan-container tr:last-child td {
+    border-bottom: none;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+
+.keranjang-body {
+    background: #FFE99A;
+    min-height: 100vh;
+    padding-left: 260px; /* Menyesuaikan dengan lebar sidebar */
+    display: flex;
+    flex-direction: column;
+}
+
+.keranjang-container {
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 24px;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.keranjang-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.keranjang-container th,
+.keranjang-container td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.keranjang-container th {
+    background-color: #007bff;
+    color: white;
+}
+
+.keranjang-kosong {
+    text-align: center;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.btn-checkout {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 20px;
+    float: right;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: greenyellow;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* ...existing code... */
+
+/* Styling untuk Invoice */
+.invoice-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #FFE99A;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+}
+
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 15px;
+    background: #FFD586;
+    border-radius: 8px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.invoice-table th,
+.invoice-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.invoice-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.invoice-table tr:last-child td {
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}
+
+.invoice-total {
+    text-align: right;
+    font-size: 1.2em;
+    margin: 20px 0;
+    padding: 15px;
+    background: #e9ecef;
+    border-radius: 8px;
+}
+
+.invoice-footer {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #007bff;
+}
+
+.invoice-footer .btn-primary {
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 1.1em;
+}
+
+@media print {
+    .sidebar,
+    .btn-primary {
+        display: none;
+    }
+    
+    .invoice-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        left: -280px;
+    }
+    .sidebar-mini {
+        left: 0;
+    }
+}
+
+.penjualan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.penjualan-table th,
+.penjualan-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.penjualan-table th {
+    background-color: #FFD586;
+    color: white;
+    font-weight: bold;
+}
+
+.penjualan-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.status-badge {
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+/* User Profile Container */
+
+.profile-picture {
+    width: 45px;
+    height: 45px;
+    background: #FFE99A;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #000;
+}
+.profile-name {
+    color: black;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Logout Container */
+.logout-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 10px;
+    left: 0
+}
+
+.logout-form button {
+    width: 100%;
+    padding: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-form button:hover {
+    background: #c82333;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Penjualan</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="daftar-penjualan-body">
+    <%- include('layout/sidebar') %>
+    <div class="daftar-penjualan-container">
+        <h1>Riwayat Penjualan</h1>
+        <table class="penjualan-table">
+            <thead>
+                <tr>
+                    <th>No. Transaksi</th>
+                    <th>Tanggal</th>
+                    <th>Nama Pembeli</th>
+                    <th>Produk</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% penjualanList.forEach(penjualan => { %>
+                    <tr>
+                        <td><%= penjualan.transaksi_id %></td>
+                        <td><%= penjualan.tanggal %></td>
+                        <td><%= penjualan.user || '-' %></td>
+                        <td><%= penjualan.nama_produk %></td>
+                        <td><%= penjualan.jumlah %></td>
+                        <td>Rp <%= penjualan.total.toLocaleString('id-ID') %></td>
+                        <td><span class="status-badge"><%= penjualan.status %></span></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+<form action="/penjualan/clear" method="POST">
+    <button type="submit" class="btn btn-danger">Hapus Semua Data Penjualan</button>
+</form>    </div>
+</body>
+</html>
